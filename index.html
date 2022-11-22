@@ -8,22 +8,25 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body >
+
+
  <div class="homepage">
-    
-  <div class="leftpanel">
+    <!-- LEFT PANEL -->
+  <div class="leftpanel" id="leftpanel">
     <img src="images/logo.png" alt="" class="logo">
     <div class="title"> Kanban </div>
-    <!--ADD NEW BOARD FEATURE-->
+    <!--ADD NEW BOARD -->
     <button class="add_new_board" onclick="Show_board()" type="button">+ Add New Board</button>
     <div class="allboards">All Boards</div>
-    <ul class="tasklist" id="tasklist" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <li draggable="true" ondragstart="drag(event)"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Website Making</li>
-      <li draggable="true" ondragstart="drag(event)"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Roadmap</li>
-      <li draggable="true" ondragstart="drag(event)"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Marketing Plan</li> 
-      <li draggable="true" ondragstart="drag(event)"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Marketing Plan</li>
-      
+    <ul class="tasklist"  id="tasklist" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <li draggable="true" tabindex="1" ondragstart="drag(event)" class="dragboard" id="boards"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Website Making</li>
+      <li draggable="true" tabindex="1" ondragstart="drag(event)" class="dragboard" id="boards"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Roadmap</li>
+      <li draggable="true" tabindex="1" ondragstart="drag(event)" class="dragboard" id="boards"><img src="images/tasklogo.jpg" alt="" class="tasklogo">Marketing Plan</li> 
     </ul>
-    </div>
+    <button onclick="darkmode()" id="darkmode">Dark Mode Toggle</button>
+</div>
+
+
 
   <div class="horizontal">
   </div>
@@ -31,7 +34,9 @@
   <div class="vertical">  
   </div>
 
-  <div class="top_panel">
+  <!-- TOP PANEL -->
+
+  <div class="top_panel" id="top_panel">
       <div class="task_title" id="task_title">TASKS</div>
       <button class="add" onclick="Show()">+ Add New Tasks</button>
       
@@ -48,16 +53,17 @@
             <a onclick="openchangetitle()" >Edit</a><span onclick="closemenu()" >x</span>
             
           </div>
-        
-      
-      </div>
-      
+
+      </div>  
       
   </div>
 
-  <div class="box">
+  <!-- MAIN BOX -->
+
+  <div class="box" id="box">
        
     <div class="kanban-board">
+        <!-- TO DO -->
       <div class="kanban-block" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)" >
           <strong>To Do</strong>
 
@@ -74,10 +80,10 @@
           <div class="task" id="task3" draggable="true" ondragstart="drag(event)">
             <span>Task 3</span>
             <img src="images/closebutton.png" class="closebutton2" id="task3" onclick="delete_task(this.id)">
-        </div>
-        </div>
+          </div>
+     </div>
 
-
+       <!-- IN PROGRESS -->
       <div class="kanban-block" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
           <strong>In Progress</strong>
           <div class="task" id="task4" draggable="true" ondragstart="drag(event)">
@@ -91,6 +97,8 @@
 
       </div>
 
+      <!-- DONE -->
+
       <div class="kanban-block" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
           <strong>Done</strong>
           
@@ -100,7 +108,7 @@
         </div>
       </div>
 
-      
+      <!-- CREATE NEW TASK DIALOGUE BOX -->
       <form id="overlay">
         <div  id="create-new-task-block">
             <strong>New Task</strong>
@@ -118,7 +126,7 @@
                 <label class="form-row-label" for="task-name">Status</label>
                 <select class="form-row-input" name="task-status" id="task-status" style="min-height:2vh;" required>
                     <optgroup style="font-size: min(0.9vw,5.1vh);">
-                    <option value="" disabled selected hidden style="font-size: min(0.9vw,5.1vh);">Please select</option>
+                    <option value=""disabled selected hidden style="font-size: min(0.9vw,5.1vh);">Please select</option>
                     <option value="todo">To Do</option>
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>
@@ -127,14 +135,14 @@
                 </select>
             </span>
             <span class="form-row-buttons">
-                <button id="edit-button" onclick="editTask();">Clear</span>
-                <button id="save-button" onclick="pushData();">Save</span>
+                <button type="button" id="edit-button" onclick="editTask();">Clear</span>
+                <button type="button" id="save-button" onclick="pushData();">Save</span>
                 <button id="cancel-button" onclick="Hide()">Cancel</span>
             </span>
         </div>
     </form>
     
-    <!--ADD NEW BOARD -->
+    <!--ADD NEW BOARD DIALOGUE BOX -->
         <form id="overlay1">
         <div  id="create-new-board">
             <strong>New Board</strong>
@@ -152,6 +160,8 @@
             </div>
     </form>
 
+    <!-- CHANGE BOARD NAME POPUP -->
+
         <div class="overlay">
             <div id="changename" >
                 <label for="changetitle" style="text-align:center;font-size:1vw"> New Title: </label>
@@ -164,7 +174,7 @@
 
 </div>
  </div>
-
+ </div>
 </body>
 <script src="script.js"></script>
 </html>

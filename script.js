@@ -1,31 +1,56 @@
-/*ADD NEW BOARD*/
+// ADD NEW BOARD FEATURE
+
 function Show_board(){
-    var x ;
-    
-    x=document.getElementById("create-new-board").style.display="flex";
-    x=document.getElementById("overlay1").style.display="block";
-}
-function HideBoard(){
-  var y ;
-  
-  y=document.getElementById("create-new-board").style.display="none";
-  y=document.getElementById("overlay1").style.display="none";
-
-}
- function editBoard(){
-  var y;
-  y=document.getElementById('board-name').value = '';
-  
-}
-/*.....................*/
-
-/* ADD NEW TASK*/
-function Show(){
   var x ;
   
-  x=document.getElementById("create-new-task-block").style.display="flex";
-  x=document.getElementById("overlay").style.display="block";
+  x=document.getElementById("create-new-board").style.display="flex";
+  x=document.getElementById("overlay1").style.display="block";
 }
+function HideBoard(){
+var y ;
+
+y=document.getElementById("create-new-board").style.display="none";
+y=document.getElementById("overlay1").style.display="none";
+
+}
+function editBoard(){
+var y;
+y=document.getElementById('board-name').value = '';
+
+}
+function pushBoard(){
+  var new_field=[];
+     // get value from the input text
+     var board_name= document.getElementById('board-name').value;
+     new_field.push(board_name);
+     
+     if(board_name.localeCompare("")!=0)
+    { for(i = 0; i < new_field.length; i++)
+      { const el = document.createElement('li');
+      el.setAttribute("disabled", "");
+      el.textContent=new_field[i];
+     
+      var tasklists=document.getElementById("tasklist");
+      var names=document.getElementById("board-name").value;
+      tasklists.innerHTML += `<li draggable="true" tabindex="1" ondragstart="drag(event)" id="${names.toLowerCase().split(" ").join("")}"><img src="images/tasklogo.jpg" alt="" class="tasklogo">${names}</li>`
+      editBoard();
+      HideBoard();
+      }
+
+    }
+}
+
+/*------------------------------ */
+
+// CREATE NEW TASK POPUP
+
+function Show(){
+    var x ;
+    
+    x=document.getElementById("create-new-task-block").style.display="flex";
+    x=document.getElementById("overlay").style.display="block";
+}
+
 function Hide(){
     var x;
          x=document.getElementById('task-name').value = '';
@@ -36,21 +61,20 @@ function Hide(){
     y=document.getElementById("create-new-task-block").style.display="none";
     y=document.getElementById("overlay").style.display="none";
 }
-function editTask(){
-  var y;
-  y=document.getElementById('task-name').value = '';
-  y=document.getElementById('task-description').value = '';
-  y=document.getElementById('task-status').value = '';
-  
-}
-/*.............*/
+
+/*------------------------------ */
+
+// DELETING TASK
 function delete_task(el){
-   /*var divId = document.getElementById('todo');*/
+   
     var childId = document.getElementById(el); 
-		/*divId.removeChild(childId);*/
+	
         childId.parentNode.removeChild(childId);
       }
 
+/*------------------------------ */   
+
+// EDIT DROPDOWN
 
 function openmenu(){
     var z;
@@ -64,27 +88,14 @@ function closemenu(){
 
     m=document.getElementById("myDropdown").style.display="none";
 }
+
+/*------------------------------ */ 
+
+// DRAG FEATURE
+
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
-// const dragtask = document.querySelector('.task');
-// const block = document.getElementsByClassName('kanban-block');
-
-// dragtask.addEventListener('dragstart', (e)=> {
-//     console.log('Dragstart triggered');
-//     e.target.className += ' hold';
-//     setTimeout(()=>{
-//         e.target.className = 'taskhide';
-//     }, 0);
-// });
-
-// for( i of block){
-//     i.addEventListener('drop',(e)=>{
-//         console.log('Drop triggered');
-//         e.target.append(dragtask);
-//     });
-// }
-
 
 
 function allowDrop(ev) {
@@ -154,36 +165,22 @@ function pushData()
          var y ;
     
     y=document.getElementById("create-new-task-block").style.display="none";
-    y=document.getElementById("overlay").style.display="none";  
+    y=document.getElementById("overlay").style.display="none";
+        
     }
     
     }
    
-      
-     
 } 
-/* ADD NEW BOARD*/
-function pushBoard(){
-  var new_field=[];
-     // get value from the input text
-     var board_name= document.getElementById('board-name').value;
-     new_field.push(board_name);
-     
-     if(board_name.localeCompare("")!=0)
-    { for(i = 0; i < new_field.length; i++)
-      { const el = document.createElement('li');
-      el.setAttribute("disabled", "");
-      el.textContent=new_field[i];
-     
-      var tasklists=document.getElementById("tasklist");
-      var names=document.getElementById("board-name").value;
-      tasklists.innerHTML += `<li draggable="true" ondragstart="drag(event)" id="${names.toLowerCase().split(" ").join("")}"><img src="images/tasklogo.jpg" alt="" class="tasklogo">${names}</li>`
-      editBoard();
-      HideBoard();
-    }
+function editTask(){
+  var y;
+  y=document.getElementById('task-name').value = '';
+  y=document.getElementById('task-description').value = '';
+  y=document.getElementById('task-status').value = '';
+  
+}
 
-}
-}
+/*------------------------------ */
 
 
 // Changing name of the board
@@ -199,9 +196,8 @@ function closechangetitle(){
     var x ;
     
     x=document.getElementById("changename").style.display="none";
-    // x=document.getElementById("overlay").style.display="block";
+    
 }
-
 
 const txt1= document.getElementById('changetitle');
 
@@ -210,50 +206,74 @@ const title1= document.getElementById('task_title');
 function newchange(){
   title1.innerHTML=txt1.value;
   var x ;
-x=document.getElementById("changename").style.display="none";
-x=document.getElementById("myDropdown").style.display="none";
-  // x=document.getElementById("overlay").style.display="block";
+  x=document.getElementById("changename").style.display="none";
+  x=document.getElementById("myDropdown").style.display="none";
+}  
+
+/*------------------------------ */
+
+
+
+// DARK MODE TOGGLE
+
+var t=0;
+function darkmode() {
+ t=t+1;
+  if(t%2!=0)
+  {x=document.getElementById('box').style.backgroundColor = 'black';
+  x=document.getElementById('top_panel').style.backgroundColor = 'black';
+  x=document.getElementById('leftpanel').style.backgroundColor = 'black';
 }
-  // append data to the array
-     
-    
-    
-     /*var makeBox = function(){
-        var startMousePos = {x:0, y:0}
-      var startDivPos = {x:0, y:0}
-      var dragging = false;
+else{
+  x=document.getElementById('box').style.backgroundColor = '#22262a';
+  x=document.getElementById('top_panel').style.backgroundColor = '#33334d';
+  x=document.getElementById('leftpanel').style.backgroundColor = '#33334d';
+}
+  
+}
 
-      el.onmousedown = function(event) {
-        startMousePos.x = event.clientX;
-        startMousePos.y = event.clientY;
-  
-        startDivPos.x = el.offsetLeft;
-        startDivPos.y = el.offsetTop;
-  
-        dragging = true;
-      }
-      el.onmousemove = function(event) {
-        if(dragging){
-          deltaX = event.clientX - startMousePos.x;
-          deltaY = event.clientY - startMousePos.y;
-  
-          el.style.left = (deltaX + startDivPos.x) + "px";
-          el.style.top = (deltaY + startDivPos.y) + "px";
-        }
-      }
-  
-      el.onmouseup = function(event) {
-        dragging = false; 
-      }
-    }
-    el.onclick=makeBox;*/
-   /* const source = document.getElementById("fasna");
-source.addEventListener("dragstart", (event) => {
-  // make it half transparent
-  event.target.classList.add("dragging");
-});
+/*------------------------------ */
 
-source.addEventListener("dragend", (event) => {
-  // reset the transparency
-  event.target.classList.remove("dragging");
-});*/
+// BOARD REORDER FEATURE
+
+let items = document.querySelectorAll('#boards > li')
+
+items.forEach(item => {
+  $(item).prop('draggable', true)
+  item.addEventListener('dragstart', dragStart)
+  item.addEventListener('drop', dropped)
+  item.addEventListener('dragenter', cancelDefault)
+  item.addEventListener('dragover', cancelDefault)
+})
+
+function dragStart (e) {
+  var index = $(e.target).index()
+  e.dataTransfer.setData('text/plain', index)
+}
+
+function dropped (e) {
+  cancelDefault(e)
+  
+  // get new and old index
+  let oldIndex = e.dataTransfer.getData('text/plain')
+  let target = $(e.target)
+  let newIndex = target.index()
+  
+  // remove dropped items at old place
+  let dropped = $(this).parent().children().eq(oldIndex).remove()
+
+  // insert the dropped items at new place
+  if (newIndex < oldIndex) {
+    target.before(dropped)
+  } else {
+    target.after(dropped)
+  }
+}
+
+function cancelDefault (e) {
+  e.preventDefault()
+  e.stopPropagation()
+  return false
+}
+
+/*------------------------------ */

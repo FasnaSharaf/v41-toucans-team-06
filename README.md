@@ -8,7 +8,7 @@
 
 * _HTML_
 * _CSS_
-* _Vanilla JS_
+* _JS_
 * _jQuery_
 
 
@@ -16,17 +16,20 @@
 
 This allows users to 
 
-* Create tasks.
-* Categorize them according to their status through drag and drop.
+* Create new tasks.
+* Categorize them according to their status through drag and drop feature.
 * Save the tasks.
 * Delete tasks if needed.
-* Change the name of their board as well.
+* Add a new board.
+* Change the name of their board.
+* Reorder the boards list.
+* Switch between dark and light mode
 
 ## Setup/Installation Requirements
 
 * Clone this repository and start live server.
 * Click on this link: 
-
+ https://effulgent-moxie-7b7eb8.netlify.app/
 
 
 
